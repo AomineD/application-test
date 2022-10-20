@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:padding="@dimen/padding_reason_call"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_header_size"
+        android:textColor="@color/txt_darked"
+        android:text="@string/reason_call"
+        android:layout_gravity="start"
+        android:gravity="center_vertical"/>
+
+    <TextView
+        android:layout_marginStart="@dimen/margin_text_reason_call"
+        android:layout_marginEnd="@dimen/margin_text_reason_call"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="@dimen/text_reason_call"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:textColor="@color/txt_darked"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:text="@string/reasons_"
+        />
+
+
+    <TextView
+        android:id="@+id/ticketId"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_id"
+        android:textColor="@color/dark_gray"
+        android:text="Ticket #130"
+        android:layout_gravity="end|bottom"
+        android:gravity="center_vertical"/>
+
+</LinearLayout>

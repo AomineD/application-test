@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_header_customer_name"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.4"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/customer_info"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/txt_darked"
+                    android:textSize="@dimen/text_header_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/customerNameText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Diego Garcia"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/txt_darked"
+                    android:textSize="@dimen/text_values_size"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="@dimen/margin_horizontal_customer"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/call_icon_size"
+                    android:layout_height="@dimen/call_icon_size"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/call"
+                    app:tint="@color/primary" />
+
+                <TextView
+                    android:id="@+id/customerPhoneText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center_vertical"
+                    android:layout_marginStart="@dimen/margin_horizontal_customer"
+                    android:text="3113653547"
+                    android:textAlignment="textStart"
+                    android:textColor="#A2A2A2"
+                    android:textSize="@dimen/text_header_size"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:textColor="@color/txt_darked"
+                android:textSize="@dimen/text_header_size"
+                android:text="@string/schedulefor"
+                />
+
+            <TextView
+                android:id="@+id/dateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Saturday, Dec 24, 2016 11:35 AM"
+                android:textAlignment="textStart"
+                android:textColor="@color/values_txt"
+                android:textSize="@dimen/text_values_size"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

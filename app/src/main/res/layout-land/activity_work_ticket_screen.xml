@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        app:layout_constraintVertical_bias="0"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingStart="@dimen/padding_horizontal_toolbar"
+        android:paddingTop="@dimen/padding_vertical_toolbar"
+        android:paddingEnd="@dimen/padding_horizontal_toolbar"
+        android:gravity="center_vertical"
+        >
+
+        <LinearLayout
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+                android:layout_width="@dimen/toolbar_icon_size_horizontal"
+                android:layout_height="@dimen/toolbar_icon_size"
+                app:srcCompat="@drawable/back_ic"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitXY"
+                app:tint="@color/primary"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/padding_text"
+                android:textColor="@color/primary"
+                android:text="@string/dashboard_txt"
+                android:textSize="@dimen/toolbar_btn_text_size"
+                />
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textColor="@color/medium_gray"
+            android:textAlignment="center"
+            android:textSize="@dimen/toolbar_title_text_size"
+            android:text="@string/work_ticket_txt"
+            />
+
+        <View
+            android:layout_width="0.1dp"
+            android:layout_height="0.1dp"
+            android:id="@+id/menuLocation"
+            />
+
+        <LinearLayout
+            android:layout_marginStart="@dimen/margin_between_btns"
+            android:id="@+id/btnMenu"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/menuAnimation"
+                android:layout_width="@dimen/toolbar_animation_size_horizontal"
+                android:layout_height="@dimen/toolbar_animation_size"
+                android:scaleType="fitXY"
+                android:layout_gravity="center_horizontal"
+                app:lottie_fileName="@string/menu_json"
+                app:lottie_autoPlay="false"
+                app:lottie_loop="false"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/padding_text"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/toolbar_btn_text_size"
+                android:text="@string/menu_txt"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        app:layout_constraintBottom_toTopOf="@id/tabLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/padding_horizontal_screencontent"
+            android:paddingStart="@dimen/padding_horizontal_screencontent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/header_margin_top"
+                android:layout_height="wrap_content">
+
+                <!-- Customer name and schedule date -->
+               <include
+                   android:id="@+id/customerLay"
+                   layout="@layout/layout_customer_name_and_date"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/divisor_strength"
+                    android:background="@color/divisor_color"
+                    android:layout_marginTop="@dimen/divisor_margin_vertical"
+                    />
+                <!-- Customer address and notes -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <include
+                        android:id="@+id/addressLay"
+                        layout="@layout/layout_address_notes"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/divisor_margin_vertical"
+                        />
+                    <View
+                        android:layout_width="@dimen/divisor_strength"
+                        android:layout_height="match_parent"
+                        android:background="@color/divisor_color"
+                        />
+                    <include
+                        android:id="@+id/notesLay"
+                        android:layout_weight="1"
+                        layout="@layout/layout_dispatch_notes"
+                        android:layout_marginTop="@dimen/divisor_margin_vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+            <!-- Reason for call layout -->
+            <include
+                android:layout_marginTop="@dimen/divisor_margin_vertical"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/reasonCallLayout"
+                layout="@layout/layout_reason_call"
+                />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/loadingLayout"
+        android:visibility="gone"
+        android:layout_width="0dp"
+        android:background="#fff"
+        app:layout_constraintBottom_toTopOf="@id/tabLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:layout_height="0dp">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerInParent="true"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="@string/loading_json"
+            />
+
+    </RelativeLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabBackground="@color/tab_background"
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        app:tabPadding="@dimen/tabPadding"
+        app:tabIndicatorGravity="top"
+        app:tabIndicatorHeight="@dimen/tabIndicatorHeight"
+        style="@style/MyCustomTabLayout"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

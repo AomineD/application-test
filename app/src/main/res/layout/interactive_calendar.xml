@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/margin_horizontal_calendar"
+    android:layout_marginEnd="@dimen/margin_horizontal_calendar"
+    android:background="@color/background"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="@dimen/icon_calendar_size"
+                android:layout_height="@dimen/icon_calendar_size"
+                android:padding="@dimen/icon_calendar_padding"
+                android:id="@+id/btnReset"
+                app:srcCompat="@drawable/reset"
+                app:tint="@color/txt_darked"
+                />
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/title_calendar_txt_padding"
+                android:textAlignment="center"
+                android:text="@string/select_date"
+                android:textColor="@color/txt_darked"
+                android:textSize="@dimen/title_calendar_txt_size" />
+            <ImageView
+                android:layout_width="@dimen/icon_calendar_size"
+                android:layout_height="@dimen/icon_calendar_size"
+                android:padding="@dimen/icon_calendar_padding"
+                android:id="@+id/btnClose"
+                app:srcCompat="@drawable/close"
+                app:tint="@color/txt_darked"
+                />
+        </LinearLayout>
+
+
+        <com.events.calendar.views.EventsCalendar
+            android:id="@+id/eventsCalendar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:overScrollMode="never"
+            app:datesTextSize="@dimen/month_title_size"
+            app:eventDotColor="#ff0000"
+            app:isBoldTextOnSelectionEnabled="true"
+            app:monthTitleColor="#000"
+            app:monthTitleTextSize="@dimen/month_title_size"
+            app:primaryTextColor="@color/txt_darked"
+            app:secondaryTextColor="#52000000"
+            app:selectedTextColor="#000000"
+            app:selectionColor="#ffe600"
+            app:weekHeaderColor="#595959"
+            app:rangeSelectionColor="#ffe600"
+            app:rangeSelectionStartColor="#c1ae01"
+            app:rangeSelectionEndColor="#c1ae01"
+            app:weekHeaderTextSize="@dimen/month_title_size" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

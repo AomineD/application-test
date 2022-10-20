@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/padding_horizontal_internal_content"
+        android:paddingEnd="@dimen/padding_horizontal_internal_content"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/margin_divisor"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="@dimen/call_icon_size"
+                android:layout_height="@dimen/call_icon_size"
+                app:srcCompat="@drawable/notes"
+                android:layout_gravity="center_vertical"
+                />
+            <TextView
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_header_size"
+                android:textColor="@color/txt_darked"
+                android:text="@string/dispatch_notes"
+                android:gravity="center_vertical" />
+        </LinearLayout>
+
+
+        <EditText
+            android:layout_marginTop="@dimen/margin_top_values"
+            android:id="@+id/myNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine|textNoSuggestions"
+            android:textSize="@dimen/text_header_size"
+            android:textColor="@color/txt_darked"
+            android:textAlignment="textStart"
+            android:gravity="start"
+            android:lines="8"
+            android:maxLines="12"
+            android:minLines="8"
+            android:text="@string/lorem_ipsum"
+            android:ellipsize="end"
+            android:scrollbars="vertical" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_gravity="end"
+            android:id="@+id/saveNote"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            app:cardCornerRadius="0dp"
+            app:cardUseCompatPadding="true"
+            app:cardBackgroundColor="@color/primary"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textStyle="bold"
+                android:padding="@dimen/paddingTextSizeSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textSizeSaveNote"
+                android:textColor="@color/white"
+                android:text="@string/save_changes"
+                android:gravity="center_vertical"
+                android:layout_gravity="center"
+               />
+
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divisor_strength"
+        android:background="@color/divisor_color"
+        android:layout_marginTop="@dimen/divisor_margin_vertical"
+        android:layout_marginBottom="@dimen/divisor_margin_vertical"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/padding_horizontal_internal_content"
+        android:paddingEnd="@dimen/padding_horizontal_internal_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+
+
+        <TextView
+            android:textStyle="bold"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_header_size"
+            android:textColor="@color/txt_darked"
+            android:text="@string/dept_class"
+            android:gravity="center_vertical" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_header_size"
+            android:textColor="@color/values_txt"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="Plumbing"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:gravity="end|center_vertical"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_header_size"
+                android:textColor="@color/txt_darked"
+                android:text="@string/service_type"
+                android:gravity="center_vertical" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_header_size"
+                android:textColor="@color/values_txt"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="Call Back"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

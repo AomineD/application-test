@@ -1,0 +1,51 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.AndroidTestApplication" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primaryDark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/primaryDark</item>
+        <item name="colorSecondaryVariant">@color/accentColor</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.InputAddTheme" parent="CustomBottomSheetDialogD">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primaryDark</item>
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <style name="Theme.StartTheme" parent="Theme.SplashScreen">
+    <item name="windowSplashScreenBackground">@color/white</item>
+    <item name="windowSplashScreenAnimatedIcon">@drawable/animated_logo_small</item>
+    <item name="windowSplashScreenAnimationDuration">300</item>
+    <item name="postSplashScreenTheme">@style/Theme.AndroidTestApplication</item>
+    </style>
+
+
+
+    <style name="Theme.InputTheme" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="android:textColorHint">@color/medium_gray</item>
+        <item name="helperTextEnabled">true</item>
+        <item name="helperTextTextColor">@color/red</item>
+        <item name="boxStrokeWidth">1.25dp</item>
+        <item name="boxBackgroundMode">outline</item>
+        <!--<item name="boxStrokeColor">@color/medium_gray</item>-->
+    </style>
+
+    <style name="MyCustomTabLayout" parent="@style/Widget.MaterialComponents.TabLayout">
+        <item name="tabTextAppearance">@style/TabText</item>
+        <item name="iconSize">@dimen/tabItemTextSize</item>
+    </style>
+
+    <style name="TabText" parent="@style/Widget.AppCompat.TextView">
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">@dimen/tabItemTextSize</item>
+    </style>
+
+</resources>

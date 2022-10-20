@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- LOGIN SCREEN DIMENS -->
+    <dimen name="width_inputs">300dp</dimen>
+    <dimen name="icon_login_size">200dp</dimen>
+    <dimen name="font_size_login">16sp</dimen>
+    <item type="fraction" name="bias_margin_top">0.15</item>
+    <item type="fraction" name="bias_margin_inputs" format="float">0.05</item>
+    <item type="fraction" name="bias_margin_button" format="float">0.05</item>
+    <dimen name="padding_txt_button">12dp</dimen>
+    <dimen name="animation_loading_size">40dp</dimen>
+    <dimen name="button_height_login">60dp</dimen>
+    <dimen name="animation_margin">5dp</dimen>
+
+    <!-- DASHBOARD SCREEN DIMENS -->
+            <!-- Toolbar dashboard -->
+    <dimen name="padding_vertical_toolbar">10dp</dimen>
+    <dimen name="padding_horizontal_toolbar">15dp</dimen>
+    <dimen name="margin_between_btns">10dp</dimen>
+
+    <dimen name="toolbar_icon_size">18dp</dimen>
+    <dimen name="toolbar_icon_size_horizontal">20dp</dimen>
+
+    <!-- Menu animation -->
+    <dimen name="toolbar_animation_size">18dp</dimen>
+    <dimen name="toolbar_animation_size_horizontal">30dp</dimen>
+
+    <dimen name="padding_text">0dp</dimen>
+    <dimen name="toolbar_title_text_size">20sp</dimen>
+    <dimen name="toolbar_btn_text_size">12sp</dimen>
+            <!-- Text date -->
+    <dimen name="txt_date_size">16sp</dimen>
+    <dimen name="txt_date_margin_start">30dp</dimen>
+
+    <!-- List -->
+    <dimen name="margin_item_top">10dp</dimen>
+    <dimen name="margin_item_horizontal">15dp</dimen>
+    <dimen name="card_content_pading">10dp</dimen>
+    <dimen name="txt_size_titles">16sp</dimen>
+    <dimen name="txt_size_subtitles">12sp</dimen>
+    <dimen name="margin_date">5dp</dimen>
+    <dimen name="margin_id_ticket">10dp</dimen>
+    <dimen name="margin_divisor">15dp</dimen>
+    <dimen name="address_width">100dp</dimen>
+    <dimen name="item_button_text_size">14sp</dimen>
+    <dimen name="item_button_view_width">110dp</dimen>
+    <dimen name="item_button_text_padding">10dp</dimen>
+
+    <!-- Calendar interactive -->
+    <dimen name="title_calendar_txt_padding">15dp</dimen>
+    <dimen name="title_calendar_txt_size">28sp</dimen>
+    <dimen name="margin_horizontal_calendar">0dp</dimen>
+    <dimen name="button_calendar_text_size">18sp</dimen>
+    <dimen name="button_calendar_padding">15dp</dimen>
+    <dimen name="button_calendar_width">300dp</dimen>
+    <dimen name="button_calendar_margin_top">10dp</dimen>
+    <dimen name="icon_calendar_size">38dp</dimen>
+    <dimen name="icon_calendar_padding">8dp</dimen>
+    <dimen name="month_title_size">14sp</dimen>
+
+    <!-- PopUp Loading -->
+    <dimen name="popup_padding_vertical">5dp</dimen>
+    <dimen name="popup_padding_horizontal">15dp</dimen>
+    <dimen name="loading_popup_size">120dp</dimen>
+    <dimen name="text_popup_padding">8dp</dimen>
+    <dimen name="text_popup_size">20sp</dimen>
+    <dimen name="text_max_width">250dp</dimen>
+
+    <!-- PopUp add ticket -->
+    <dimen name="margin_vertical_add_ticket">25dp</dimen>
+    <dimen name="corners_pop_up_add">7dp</dimen>
+
+    <!-- WORK TICKET SCREEN DIMENS -->
+    <dimen name="divisor_strength">1.5dp</dimen>
+
+    <dimen name="padding_horizontal_screencontent">10dp</dimen>
+    <dimen name="padding_header_customer_name">10dp</dimen>
+    <dimen name="padding_horizontal_internal_content">15dp</dimen>
+    <dimen name="header_margin_top">20dp</dimen>
+    <dimen name="call_icon_size">26dp</dimen>
+    <dimen name="margin_horizontal_customer">10dp</dimen>
+    <dimen name="text_values_size">14sp</dimen>
+    <dimen name="text_header_size">16sp</dimen>
+    <dimen name="padding_icon_tv_header">8dp</dimen>
+    <dimen name="divisor_margin_vertical">15dp</dimen>
+    <dimen name="address_max_width">140dp</dimen>
+    <dimen name="margin_top_values">15dp</dimen>
+    <dimen name="padding_button_directions">10dp</dimen>
+    <dimen name="margin_button_directions">15dp</dimen>
+
+    <dimen name="text_reason_call">14sp</dimen>
+    <dimen name="text_size_id">16sp</dimen>
+    <dimen name="margin_text_reason_call">15dp</dimen>
+    <dimen name="padding_reason_call">10dp</dimen>
+
+    <dimen name="textSizeSaveNote">20sp</dimen>
+    <dimen name="paddingTextSizeSave">10dp</dimen>
+
+    <!-- TABS -->
+    <dimen name="tabItemTextSize">18sp</dimen>
+    <dimen name="tabIndicatorHeight">2dp</dimen>
+    <dimen name="tabPadding">18dp</dimen>
+
+
+</resources>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:paddingTop="@dimen/popup_padding_vertical"
+    android:paddingBottom="@dimen/popup_padding_vertical"
+    android:paddingEnd="@dimen/popup_padding_horizontal"
+    android:paddingStart="@dimen/popup_padding_horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/titlePopUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0"
+        android:text="@string/select_type_map"
+        android:textColor="@color/txt_darked"
+        android:textStyle="bold"
+        android:padding="@dimen/padding_header_customer_name"
+        android:textSize="@dimen/toolbar_title_text_size"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titlePopUp"
+        android:layout_marginTop="@dimen/margin_top_values"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+
+        android:layout_height="wrap_content">
+
+
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:id="@+id/mapSdkBtn"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_header_customer_name"
+        android:layout_height="wrap_content">
+
+       <ImageView
+
+           android:layout_width="@dimen/loading_popup_size"
+           android:layout_height="@dimen/loading_popup_size"
+           app:srcCompat="@drawable/google_maps"
+           />
+
+        <TextView
+            android:padding="@dimen/text_popup_padding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textStyle="normal"
+            android:textColor="@color/txt_darked"
+            android:text="@string/gmapSdk"
+            android:textSize="@dimen/text_popup_size"
+            android:ellipsize="end"
+            android:maxLines="2"
+            />
+
+    </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:id="@+id/webViewBtn"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_header_customer_name"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="@dimen/loading_popup_size"
+                android:layout_height="@dimen/loading_popup_size"
+                app:srcCompat="@drawable/web"
+                />
+
+            <TextView
+                android:padding="@dimen/text_popup_padding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textStyle="normal"
+                android:textColor="@color/txt_darked"
+                android:text="@string/web_selection"
+                android:textSize="@dimen/text_popup_size"
+                android:ellipsize="end"
+                android:maxLines="2"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="UseCompoundDrawables"
+    android:background="@color/light_gray"
+    tools:context=".ui.view.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        app:layout_constraintVertical_bias="0"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingStart="@dimen/padding_horizontal_toolbar"
+        android:paddingTop="@dimen/padding_vertical_toolbar"
+        android:paddingBottom="@dimen/padding_vertical_toolbar"
+        android:paddingEnd="@dimen/padding_horizontal_toolbar"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/btnCalendar"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+                android:layout_width="@dimen/toolbar_icon_size_horizontal"
+                android:layout_height="@dimen/toolbar_icon_size"
+                app:srcCompat="@drawable/calendar"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitXY"
+                app:tint="@color/primary"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/padding_text"
+                android:textColor="@color/primary"
+                android:text="@string/calendar_txt"
+                android:textSize="@dimen/toolbar_btn_text_size"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginStart="@dimen/margin_between_btns"
+            android:id="@+id/btnSync"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="@dimen/toolbar_icon_size_horizontal"
+                android:layout_height="@dimen/toolbar_icon_size"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/sync"
+                android:layout_gravity="center_horizontal"
+                app:tint="@color/primary"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/padding_text"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/toolbar_btn_text_size"
+                android:text="@string/sync_txt"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textColor="@color/medium_gray"
+            android:textAlignment="center"
+            android:textSize="@dimen/toolbar_title_text_size"
+            android:text="@string/dashboard_txt"
+            />
+
+        <View
+            android:layout_width="0.1dp"
+            android:layout_height="0.1dp"
+            android:id="@+id/menuLocation"
+            />
+
+        <LinearLayout
+            android:id="@+id/btnAddTicket"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="@dimen/toolbar_icon_size"
+                android:layout_height="@dimen/toolbar_icon_size"
+                app:srcCompat="@drawable/add"
+                android:layout_gravity="center_horizontal"
+                app:tint="@color/primary"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/padding_text"
+                android:textColor="@color/primary"
+                android:text="@string/new_ticket"
+                android:textSize="@dimen/toolbar_btn_text_size"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginStart="@dimen/margin_between_btns"
+            android:id="@+id/btnMenu"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/menuAnimation"
+                android:layout_width="@dimen/toolbar_animation_size_horizontal"
+                android:layout_height="@dimen/toolbar_animation_size"
+                android:scaleType="fitXY"
+                android:layout_gravity="center_horizontal"
+                app:lottie_fileName="@string/menu_json"
+                app:lottie_autoPlay="false"
+                app:lottie_loop="false"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/padding_text"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/toolbar_btn_text_size"
+                android:text="@string/menu_txt"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintHorizontal_bias="0"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:layout_marginStart="@dimen/txt_date_margin_start"
+        android:textSize="20sp"
+        android:text="@string/all_tickets"
+        android:textColor="@color/dark_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTickets"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDate"
+        android:background="@color/background"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
