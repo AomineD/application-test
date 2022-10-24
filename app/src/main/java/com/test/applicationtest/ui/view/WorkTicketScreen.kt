@@ -22,6 +22,7 @@ import com.test.applicationtest.helper.CoroutinesHelper.main
 import com.test.applicationtest.helper.DataConverter.toFormat
 import com.test.applicationtest.helper.ViewHelper.playLimit
 import com.test.applicationtest.model.Ticket
+import com.test.applicationtest.ui.dialog.AddTicketPopUp
 import com.test.applicationtest.ui.viewmodel.WorkTViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
@@ -147,6 +148,25 @@ actualTicket = ticket
                                finish()
                            }
                        }
+                       item {
+                           label = getString(R.string.edit_ticket_txt)
+                           callback = {
+                               editTicketOn()
+                           }
+                       }
+                       item {
+                           label = getString(R.string.delete_ticket)
+                           callback = {
+                               viewModel.deleteTicket {
+                                   main {
+                                       val toast = Toasty.info(this@WorkTicketScreen, R.string.ticket_deleted)
+                                       toast.setGravity(Gravity.TOP, 0, 30)
+                                       toast.show()
+                                       finish()
+                                   }
+                               }
+                           }
+                       }
                    }
                }
            popMenu =  popupMenu.build()
@@ -155,6 +175,16 @@ actualTicket = ticket
                binding.menuAnimation.playLimit(85, 140)
            }
            popMenu!!.show(this@WorkTicketScreen, binding.menuLocation)
+    }
+
+    /**
+     * Edit text using #AddTicketPopUp
+     */
+    private fun editTicketOn() {
+        AddTicketPopUp(actualTicket) { ticket ->
+           actualTicket = ticket
+            updateTicket()
+        }.show(supportFragmentManager, "edittkc")
     }
 
     private fun updateTicket() {

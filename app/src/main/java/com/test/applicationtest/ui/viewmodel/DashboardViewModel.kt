@@ -59,16 +59,7 @@ class DashboardViewModel @Inject constructor(private val db:SQLiteHelper) :ViewM
         }
     }
 
-    fun deleteTicket(id:Int?, result: suspend (CoroutineScope.(Boolean) -> Unit)){
-        db.deleteTicket(id){ deleted ->
-            result(deleted)
-            if(deleted){
-                getTickets()
-            }
-        }
-    }
-
-    fun modifyTicket(ticket: Ticket, result: suspend (CoroutineScope.(Boolean) -> Unit)){
+    private fun modifyTicket(ticket: Ticket, result: suspend (CoroutineScope.(Boolean) -> Unit)){
         db.modifyTicket(ticket){ success ->
             if(success){
                 getTickets()
@@ -89,29 +80,37 @@ class DashboardViewModel @Inject constructor(private val db:SQLiteHelper) :ViewM
 
                 val calID = getCalendarId(contentResolver)
                 val startMillis = it.ticketDate
-                val endMillis = it.ticketDate.to30Minutes()
-                val existEvent = it.checkIfEventExist(contentResolver)
-                val values = ContentValues().apply {
-                    put(CalendarContract.Events.DTSTART, startMillis)
-                    put(CalendarContract.Events.DTEND, endMillis)
-                    put(CalendarContract.Events.TITLE, it.subtitle)
-                    put(CalendarContract.Events.DESCRIPTION, it.myNote)
-                    put(CalendarContract.Events.CALENDAR_ID, calID)
-                    put(CalendarContract.Events.EVENT_TIMEZONE, Locale.getDefault().displayName)
-                }
-                if(existEvent) {
-                   val updateUri =
-                        ContentUris.withAppendedId(CalendarContract.Events.CONTENT_URI, it.eventId)
-                    val rows = contentResolver.update(updateUri, values, null, null)
-                    rowUpdate += rows
-                }else{
-                    val uri = contentResolver.insert(CalendarContract.Events.CONTENT_URI, values)
-                    val eventID = uri?.lastPathSegment?.toLong()
 
-                    if(eventID != null) {
-                        modifyTicket(it.copy(eventId = eventID)) {
-                            // if true id was success updated
-                            rowAdded++
+                // Add only events that have a date equal to or greater than today
+                if(startMillis >= System.currentTimeMillis()) {
+                    val endMillis = it.ticketDate.to30Minutes()
+                    val existEvent = it.checkIfEventExist(contentResolver)
+                    val values = ContentValues().apply {
+                        put(CalendarContract.Events.DTSTART, startMillis)
+                        put(CalendarContract.Events.DTEND, endMillis)
+                        put(CalendarContract.Events.TITLE, it.subtitle)
+                        put(CalendarContract.Events.DESCRIPTION, it.myNote)
+                        put(CalendarContract.Events.CALENDAR_ID, calID)
+                        put(CalendarContract.Events.EVENT_TIMEZONE, Locale.getDefault().displayName)
+                    }
+                    if (existEvent) {
+                        val updateUri =
+                            ContentUris.withAppendedId(
+                                CalendarContract.Events.CONTENT_URI,
+                                it.eventId
+                            )
+                        val rows = contentResolver.update(updateUri, values, null, null)
+                        rowUpdate += rows
+                    } else {
+                        val uri =
+                            contentResolver.insert(CalendarContract.Events.CONTENT_URI, values)
+                        val eventID = uri?.lastPathSegment?.toLong()
+
+                        if (eventID != null) {
+                            modifyTicket(it.copy(eventId = eventID)) {
+                                // if true id was success updated
+                                rowAdded++
+                            }
                         }
                     }
                 }

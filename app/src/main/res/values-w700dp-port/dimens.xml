@@ -60,7 +60,8 @@
     <dimen name="button_calendar_margin_top">25dp</dimen>
     <dimen name="icon_calendar_size">50dp</dimen>
     <dimen name="icon_calendar_padding">10dp</dimen>
-    <dimen name="month_title_size">18sp</dimen>
+    <dimen name="month_title_size">20sp</dimen>
+    <dimen name="month_days_size">18sp</dimen>
 
 
     <!-- PopUp Loading -->

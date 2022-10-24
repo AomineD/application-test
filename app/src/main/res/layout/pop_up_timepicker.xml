@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="8dp"
+    app:cardBackgroundColor="@color/white"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:padding="@dimen/padding_vertical_toolbar"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="@dimen/title_calendar_txt_size"
+            android:textColor="@color/txt_darked"
+            android:text="@string/select_time_and_date"
+            />
+
+        <TextView
+            android:id="@+id/dateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_item_top"
+            android:text="@string/literal_date"
+            android:textAlignment="center"
+            android:textColor="@color/txt_darked"
+            android:textSize="@dimen/txt_size_titles"
+            android:textStyle="normal" />
+
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_marginTop="@dimen/margin_item_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:calendarViewShown="true"
+            android:spinnersShown="false"
+            />
+
+        <TimePicker
+            android:visibility="gone"
+            android:id="@+id/timePicker"
+            android:layout_marginTop="@dimen/margin_item_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btn_save"
+            android:layout_width="@dimen/width_inputs"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/primary"
+            app:cardUseCompatPadding="true"
+            android:layout_marginTop="@dimen/margin_item_top"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="@dimen/padding_txt_button"
+                android:text="@string/save_ticket"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_login"
+                android:textStyle="bold" />
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

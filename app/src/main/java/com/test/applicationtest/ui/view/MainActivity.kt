@@ -48,15 +48,20 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         fullScreen()
-        viewModel.onCreate()
         observeData()
         configViews()
         configBtns()
     }
 
+    override fun onResume() {
+        super.onResume()
+        // Better use onResume to get tickets from SQLite to update list
+        viewModel.onCreate()
+    }
+
     private fun configBtns() {
         binding.btnAddTicket.setOnClickListener {
-            AddTicketPopUp(this@MainActivity) { ticket ->
+            AddTicketPopUp { ticket ->
                 viewModel.addTicket(ticket) { result, rowId ->
                     main {
                         if (result) {

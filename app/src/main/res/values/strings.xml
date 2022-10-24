@@ -67,4 +67,15 @@
     <string name="select_type_map">Select map type</string>
     <string name="empty_tickets_list">Empty ticket list</string>
     <string name="empty_tickets_sync">There are no tickets to sync in calendar</string>
+    <string name="select_time_and_date"><![CDATA[Select Date & Time]]></string>
+    <string name="customer_phone_hint">Customer phone</string>
+    <string name="subtitle_hint">Ticket subtitle</string>
+    <string name="notes_hint">My notes</string>
+    <string name="phone_empty">Customer phone must not be empty</string>
+    <string name="date_empty">Ticket date must not be empty</string>
+    <string name="edit_ticket">Edit ticket #%s</string>
+    <string name="edit_ticket_txt">Edit Ticket</string>
+    <string name="delete_ticket">Delete Ticket</string>
+    <string name="ticket_deleted">Ticket was deleted</string>
+    <string name="literal_date">Date</string>
 </resources>

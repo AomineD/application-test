@@ -2,6 +2,7 @@ package com.test.applicationtest.helper
 
 import android.content.ContentResolver
 import android.content.ContentValues
+import android.content.Context
 import android.database.Cursor
 import android.provider.CalendarContract
 import androidx.core.database.getStringOrNull
@@ -79,6 +80,8 @@ object DataConverter {
 
     fun Long.toTime(): String = SimpleDateFormat("h:mm a", Locale.getDefault()).format(Date(this)).uppercase()
 
+    fun Long.toDateAndTime(): String = SimpleDateFormat("MM/dd/yyyy h:mm a", Locale.getDefault()).format(Date(this)).uppercase()
+
     fun Long.toFormat(): String =  SimpleDateFormat("EEEE, MMM d, yyyy h:mm a", Locale.getDefault()).format(Date(this)).capitalized()
 
     fun Long.dateEqualTo(millis:Long):Boolean = this.toDate() == millis.toDate()
@@ -110,11 +113,21 @@ object DataConverter {
      * Capitalize is deprecated in kotlin strings, i'll use this
      */
 
-    fun String.capitalized(): String {
+    private fun String.capitalized(): String {
         return this.replaceFirstChar {
             if (it.isLowerCase())
                 it.titlecase(Locale.getDefault())
             else it.toString()
         }
+    }
+
+
+    /**
+     * Pixels to SP
+     */
+    fun Float.pixelsToSp(context: Context): Int {
+        val screenPixelDensity = context.resources.displayMetrics.scaledDensity // scaled for SP
+        val dpValue = this / screenPixelDensity
+        return dpValue.toInt()
     }
 }

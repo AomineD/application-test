@@ -1,34 +1,41 @@
 package com.test.applicationtest.ui.dialog
 
-import android.content.Context
 import android.os.Bundle
-import android.widget.DatePicker
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.test.applicationtest.R
 import com.test.applicationtest.databinding.PopUpAddTicketBinding
 import com.test.applicationtest.helper.CoroutinesHelper.ioSafe
+import com.test.applicationtest.helper.CoroutinesHelper.main
+import com.test.applicationtest.helper.DataConverter.toDateAndTime
 import com.test.applicationtest.model.Ticket
 import com.wineberryhalley.bclassapp.BottomBaseShet
 import kotlinx.coroutines.CoroutineScope
-import java.util.Calendar
 
-class AddTicketPopUp(context: Context, val callback: suspend (CoroutineScope.(Ticket) -> Unit)):BottomBaseShet(), DatePicker.OnDateChangedListener {
+class AddTicketPopUp(val ticketEdit:Ticket? = null,val callback: suspend (CoroutineScope.(Ticket) -> Unit)):BottomBaseShet() {
 
 
     /**
      * We validate current form state, changing color and helper text when any input is empty
      */
-    private fun validateForm(){
+    private fun validateForm():Boolean = with(binding){
+        // --- set helper text
+        txtCustomerName.helperText = if(customerName.isEmpty()) requireContext().getString(R.string.customer_empty) else ""
+        txtCustomerAddress.helperText = if(customerAddress.isEmpty()) requireContext().getString(R.string.address_empty) else ""
+        // --- set helper text
+        txtCustomerPhone.helperText = if(customerPhone.isEmpty()) requireContext().getString(R.string.phone_empty) else ""
+        datePicker.helperText = if(ticketDateText.isEmpty()) requireContext().getString(R.string.date_empty) else ""
+        // return validate form
+        return customerPhone.isNotEmpty() && ticketDateText.isNotEmpty() && customerName.isNotEmpty() && customerAddress.isNotEmpty()
+    }
 
+    private fun validateButton() = with(binding){
         val notEmpty = customerName.isNotEmpty() && customerAddress.isNotEmpty()
+        customerPhone.isNotEmpty() && ticketDateText.isNotEmpty() && ticketNotes.isNotEmpty() && subtitleTicket.isNotEmpty()
         val colorBtn = ContextCompat.getColor(requireContext(), if(notEmpty) R.color.primary else R.color.medium_gray)
-        binding.btnAdd.isEnabled = notEmpty
-        binding.btnAdd.setCardBackgroundColor(colorBtn)
-        binding.txtCustomerName.helperText = if(customerName.isEmpty()) requireContext().getString(R.string.customer_empty) else ""
-        binding.txtCustomerAddress.helperText = if(customerAddress.isEmpty()) requireContext().getString(R.string.address_empty) else ""
-
+        btnAdd.isEnabled = notEmpty
+        btnAdd.setCardBackgroundColor(colorBtn)
     }
 
     override fun layoutID(): Int {
@@ -36,9 +43,14 @@ class AddTicketPopUp(context: Context, val callback: suspend (CoroutineScope.(Ti
     }
 
     private lateinit var binding:PopUpAddTicketBinding
+    // Default Ticket fields
     var millis:Long = 0
     private var customerName = ""
     private var customerAddress = ""
+    private var customerPhone = ""
+    private var ticketDateText = ""
+    private var subtitleTicket = "No subtitle"
+    private var ticketNotes = "No notes"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,69 +60,121 @@ class AddTicketPopUp(context: Context, val callback: suspend (CoroutineScope.(Ti
     override fun OnStart() {
         binding = PopUpAddTicketBinding.bind(requireView())
         binding.txtCustomerName.editText?.text.toString()
-        val today = Calendar.getInstance()
-        millis = System.currentTimeMillis()
-        binding.ticketDate.init(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), this)
 
-        binding.txtCustomerName.editText?.addTextChangedListener(
-            afterTextChanged = {
-                customerName = it.toString()
-                validateForm()
-            }
-        )
-
-        binding.txtCustomerAddress.editText?.addTextChangedListener(
-            afterTextChanged = {
-                customerAddress = it.toString()
-                validateForm()
-            }
-        )
-
-        binding.btnAdd.setOnClickListener {
-            if(customerName.isEmpty() || customerAddress.isEmpty()){
-                return@setOnClickListener
-            }
-            ioSafe {
-                callback(getTicket())
-            }
-            dismiss()
-        }
+        textChangedConfigs()
+        configButtons()
 
         val colorBtn = ContextCompat.getColor(requireContext(), R.color.medium_gray)
         binding.btnAdd.isEnabled = false
         binding.btnAdd.setCardBackgroundColor(colorBtn)
 
-        binding.txtClose.setOnClickListener{
+        ticketEdit?.let {
+            configEditing(it)
+        }
+    }
+
+    private fun configEditing(ticket: Ticket) = with(binding){
+        val title = String.format(getString(R.string.edit_ticket), ticket.id)
+        titlePopUp.text = title
+        txtCustomerName.editText!!.setText(ticket.customerName)
+        txtSubtitle.editText!!.setText(ticket.subtitle)
+        txtNotes.editText!!.setText(ticket.myNote)
+        txtCustomerPhone.editText!!.setText(ticket.customerPhone)
+        txtCustomerAddress.editText!!.setText(ticket.customerAddress)
+        datePicker.editText!!.setText(ticket.ticketDate.toDateAndTime())
+    }
+
+    private fun configButtons() = with(binding){
+        btnAdd.setOnClickListener {
+            val isValid = validateForm()
+            if(isValid) {
+                ioSafe {
+                    callback(getTicket())
+                }
+                dismiss()
+            }
+        }
+        txtClose.setOnClickListener{
             dismiss()
         }
 
+        datePicker.editText?.setOnFocusChangeListener { v, hasFocus ->
+            if(!hasFocus){
+                return@setOnFocusChangeListener
+            }
+            v.clearFocus()
+            showDateTimePicker()
+        }
+    }
+
+    private fun showDateTimePicker() = with(binding){
+        activity?.let {
+            val popup = DateTimePickerPopUp{ mill ->
+                millis = mill
+                main {
+                    datePicker.editText!!.setText(mill.toDateAndTime())
+                    requestNewSize()
+                }
+            }
+            popup.show(it.supportFragmentManager, "dtpcik")
+        }
     }
 
 
+    private fun textChangedConfigs() = with(binding) {
+        txtCustomerName.editText?.addTextChangedListener(
+            afterTextChanged = {
+                customerName = it.toString()
+                validateButton()
+            }
+        )
 
+        txtCustomerAddress.editText?.addTextChangedListener(
+            afterTextChanged = {
+                customerAddress = it.toString()
+                validateButton()
+            }
+        )
 
+        txtCustomerPhone.editText?.addTextChangedListener(
+            afterTextChanged = {
+                customerPhone = it.toString()
+                validateButton()
+            }
+        )
 
-    override fun onDateChanged(view: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
+        txtSubtitle.editText?.addTextChangedListener(
+            afterTextChanged = {
+                subtitleTicket = it.toString()
+                validateButton()
+            }
+        )
 
-        val calendar = Calendar.getInstance()
-        calendar.set(Calendar.YEAR, year)
-        calendar.set(Calendar.MONTH, monthOfYear)
-        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-        calendar.set(Calendar.HOUR_OF_DAY, 12)
+        txtNotes.editText?.addTextChangedListener(
+            afterTextChanged = {
+                ticketNotes = it.toString()
+                validateButton()
+            }
+        )
 
-        millis = calendar.timeInMillis
-
+        datePicker.editText?.addTextChangedListener(
+            afterTextChanged = {
+                ticketDateText = it.toString()
+                validateButton()
+            }
+        )
     }
 
-   private fun getTicket():Ticket{
+
+    private fun getTicket():Ticket{
 
         return Ticket(
             id = null,
-            subtitle = "No subtitle",
+            subtitle = subtitleTicket,
             customerName = customerName,
             customerAddress = customerAddress,
-            customerPhone = "3113653547",
-            myNote = "No note",
+            customerPhone = customerPhone,
+            myNote = ticketNotes,
             ticketDate = millis,
         )
     }

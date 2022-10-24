@@ -1,7 +1,5 @@
 package com.test.applicationtest.ui.calendar
 
-import android.app.AlertDialog
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import com.events.calendar.utils.EventsCalendarUtil.SINGLE_SELECTION
@@ -35,9 +33,11 @@ class InteractiveCalendar(private val ticketList:List<Ticket>,private val dateCh
         binding = InteractiveCalendarBinding.bind(requireView())
         //Instance calendar
         val today = Calendar.getInstance()
+        val monthMaxRange = Calendar.getInstance()
+        monthMaxRange.add(Calendar.MONTH, 3)
         binding.eventsCalendar.setSelectionMode(SINGLE_SELECTION)
             .setToday(today)
-            .setMonthRange(Calendar.getInstance(), Calendar.getInstance())
+            .setMonthRange(Calendar.getInstance(), monthMaxRange)
             .setWeekStartDay(Calendar.SUNDAY, false)
 
         // Add tickets to due

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.test.applicationtest.db.SQLiteHelper
 import com.test.applicationtest.model.Ticket
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,7 +20,7 @@ class WorkTViewModel @Inject constructor(private val db: SQLiteHelper) : ViewMod
         getTicketById(id)
     }
 
-    fun getTicketById(id: Int) {
+    private fun getTicketById(id: Int) {
         db.getTicketById(id){
                 _ticket.postValue(it)
         }
@@ -30,6 +31,12 @@ class WorkTViewModel @Inject constructor(private val db: SQLiteHelper) : ViewMod
             if(it){
                 getTicketById(ticket.id!!)
             }
+        }
+    }
+
+    fun deleteTicket(result: suspend (CoroutineScope.(Boolean) -> Unit)){
+        _ticket.value?.let {
+            db.deleteTicket(it.id, result)
         }
     }
 
