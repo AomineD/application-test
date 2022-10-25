@@ -84,14 +84,14 @@ class WorkTicketScreen : AppCompatActivity(), TabLayout.OnTabSelectedListener {
     }
 
     private fun observeData() {
-        viewModel.ticket.observe(this) {
-            if (it != null) {
-                configTicketUI(it)
-            }else {
-               val toast = Toasty.error(this@WorkTicketScreen, R.string.something_went_wrong)
-               toast.setGravity(Gravity.TOP, 0, 0)
-               toast.show()
-            }
+        viewModel.ticket.observe(this) { t ->
+                t?.let { ticket ->
+                    configTicketUI(ticket)
+                } ?: main {
+                    val toast = Toasty.error(this@WorkTicketScreen, R.string.something_went_wrong)
+                    toast.setGravity(Gravity.TOP, 0, 0)
+                    toast.show()
+                }
         }
     }
 
@@ -160,7 +160,7 @@ actualTicket = ticket
                                viewModel.deleteTicket {
                                    main {
                                        val toast = Toasty.info(this@WorkTicketScreen, R.string.ticket_deleted)
-                                       toast.setGravity(Gravity.TOP, 0, 30)
+                                       toast.setGravity(Gravity.TOP, 0, 50)
                                        toast.show()
                                        finish()
                                    }
@@ -178,23 +178,25 @@ actualTicket = ticket
     }
 
     /**
-     * Edit text using #AddTicketPopUp
+     * Edit ticket using #AddTicketPopUp
      */
     private fun editTicketOn() {
         AddTicketPopUp(actualTicket) { ticket ->
            actualTicket = ticket
-            updateTicket()
+           updateTicket()
         }.show(supportFragmentManager, "edittkc")
     }
 
     private fun updateTicket() {
-        bindingDispatchNote.saveNote.isVisible = false
+        main {
+            bindingDispatchNote.saveNote.isVisible = false
 
-        val toast = Toasty.success(this@WorkTicketScreen, R.string.ticket_saved)
-        toast.setGravity(Gravity.TOP, 0, 0)
-        toast.show()
+            val toast = Toasty.success(this@WorkTicketScreen, R.string.ticket_saved)
+            toast.setGravity(Gravity.TOP, 0, 50)
+            toast.show()
 
-        viewModel.saveTicket(actualTicket!!)
+            viewModel.saveTicket(actualTicket!!)
+        }
     }
 
     private fun clickDirection(): View.OnClickListener {

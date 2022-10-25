@@ -13,7 +13,7 @@ import com.test.applicationtest.model.Ticket
 import com.wineberryhalley.bclassapp.BottomBaseShet
 import kotlinx.coroutines.CoroutineScope
 
-class AddTicketPopUp(val ticketEdit:Ticket? = null,val callback: suspend (CoroutineScope.(Ticket) -> Unit)):BottomBaseShet() {
+class AddTicketPopUp(private val ticketEdit:Ticket? = null, val callback: suspend (CoroutineScope.(Ticket) -> Unit)):BottomBaseShet() {
 
 
     /**
@@ -169,7 +169,7 @@ class AddTicketPopUp(val ticketEdit:Ticket? = null,val callback: suspend (Corout
     private fun getTicket():Ticket{
 
         return Ticket(
-            id = null,
+            id = ticketEdit?.id,
             subtitle = subtitleTicket,
             customerName = customerName,
             customerAddress = customerAddress,
